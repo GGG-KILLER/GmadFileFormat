@@ -13,10 +13,6 @@ namespace GMADFileFormat
         /// compression and possible JSON encoding
         /// </summary>
         /// <param name="Data">the file contents as a byte array</param>
-        /// <param name="ID">the workshop ID of the addon</param>
-        /// <param name="WorkshopURL">
-        /// the workshop URL of the addon
-        /// </param>
         /// <returns></returns>
         public static GMADAddon Parse ( Byte[] Data )
         {
