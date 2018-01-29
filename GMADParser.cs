@@ -1,8 +1,8 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using Newtonsoft.Json.Linq;
 
 namespace GMADFileFormat
 {
@@ -27,9 +27,11 @@ namespace GMADFileFormat
                 mem.Seek ( 0, SeekOrigin.Begin );
 
                 // Check if LZMA decompressed file is valid
-                if ( reader.ReadChar ( ) != 'G' || reader.ReadChar ( ) != 'M' ||
-                     reader.ReadChar ( ) != 'A' || reader.ReadChar ( ) != 'D' )
+                if ( reader.ReadChar ( ) != 'G' || reader.ReadChar ( ) != 'M'
+                     || reader.ReadChar ( ) != 'A' || reader.ReadChar ( ) != 'D' )
+                {
                     throw new Exception ( "Invalid GMAD file." );
+                }
 
                 // We only support up to v3
                 addon.FormatVersion = ( Int16 ) reader.ReadChar ( );
@@ -71,7 +73,7 @@ namespace GMADFileFormat
 
                 addon.Files = files.ToArray ( );
                 // Addons data is stored after the metadata
-                for ( var i = 0 ; i < addon.Files.Length ; i++ )
+                for ( var i = 0; i < addon.Files.Length; i++ )
                     addon.Files[i].Data = reader.ReadBytes ( ( Int32 ) addon.Files[i].Size );
 
                 var desc = addon.Description;
@@ -120,11 +122,11 @@ namespace GMADFileFormat
             using ( var @out = new MemoryStream ( ) )
             {
                 // Read the decoder properties
-                var props = new byte[5];
+                var props = new Byte[5];
                 @in.Read ( props, 0, 5 );
 
                 // Read in the decompress file size.
-                var fsb = new byte[8];
+                var fsb = new Byte[8];
                 @in.Read ( fsb, 0, 8 );
                 var fs = BitConverter.ToInt64 ( fsb, 0 );
 
