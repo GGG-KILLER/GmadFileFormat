@@ -3,7 +3,10 @@ A C# GMAD (`.gma` files) file parser made based on the [original](https://github
 
 This project targets .NET Standard 1.3, which means you can use this on both .NET Core and .NET Framework.
 
-# Sample
+## Archival
+This has been archived because it is **done** not because it has been *abandoned*.
+
+## Sample
 Here's an example of a **simple** (read: no validations at all) `.gma` extractor:
 ```cs
 using GmadFileFormat;
@@ -38,7 +41,7 @@ public class Program
 }
 ```
 
-# Documentation
+## Documentation
 There isn't much to document. The main two methods you need to know are:
 1. `GmadHeader GmadReader.ReadHeader ( Stream stream )`: Reads a `GmadHeader` from a `Stream`;
 2. `Byte[] GmadReader.ReadFile ( GmadHeader.File file, Stream stream )`: Reads a file inside the GMAD file from the stream.
@@ -51,10 +54,10 @@ It should only be used on **both** of these conditions:
 
 This option was added for those when you have un-seekable streams or don't want the overhead of seeking.
 
-# Dependencies
+## Dependencies
 - [System.Collections.Immutable](https://www.nuget.org/packages/System.Collections.Immutable/) (Why? Because I wanted to make the header 100% immutable.)
 
-# GMA Gotchas
+## GMA Gotchas
 1. The file *might* be zlib compressed (but without the zlib header).
 2. `GmadHeader.Author.SteamID64` will always be 0. (`gmad.exe` creates them like this).
 3. `GmadHeader.Author.Name` will always be `"Author Name"`. (`gmad.exe` creates them like this).
@@ -75,5 +78,5 @@ A sample of a JSON description would be:
 }
 ```
 
-# License
+## License
 This project is licensed under the MIT license.
